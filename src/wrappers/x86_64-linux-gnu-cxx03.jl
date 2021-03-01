@@ -5,55 +5,15 @@ using hsakmt_roct_jll
 using NUMA_jll
 using Zlib_jll
 using Elfutils_jll
-## Global variables
-PATH = ""
-LIBPATH = ""
-LIBPATH_env = "LD_LIBRARY_PATH"
-LIBPATH_default = ""
-
-# Relative path to `libhsa_runtime64`
-const libhsa_runtime64_splitpath = ["lib", "libhsa-runtime64.so"]
-
-# This will be filled out by __init__() for all products, as it must be done at runtime
-libhsa_runtime64_path = ""
-
-# libhsa_runtime64-specific global declaration
-# This will be filled out by __init__()
-libhsa_runtime64_handle = C_NULL
-
-# This must be `const` so that we can use it with `ccall()`
-const libhsa_runtime64 = "libhsa-runtime64.so.1"
-
-
-# Inform that the wrapper is available for this platform
-wrapper_available = true
-
-"""
-Open all libraries
-"""
+JLLWrappers.@generate_wrapper_header("hsa_rocr")
+JLLWrappers.@declare_library_product(libhsa_runtime64, "libhsa-runtime64.so.1")
 function __init__()
-    # This either calls `@artifact_str()`, or returns a constant string if we're overridden.
-    global artifact_dir = find_artifact_dir()
+    JLLWrappers.@generate_init_header(hsakmt_roct_jll, NUMA_jll, Zlib_jll, Elfutils_jll)
+    JLLWrappers.@init_library_product(
+        libhsa_runtime64,
+        "lib/libhsa-runtime64.so",
+        RTLD_LAZY | RTLD_DEEPBIND,
+    )
 
-    global PATH_list, LIBPATH_list
-    # Initialize PATH and LIBPATH environment variable listings
-    # From the list of our dependencies, generate a tuple of all the PATH and LIBPATH lists,
-    # then append them to our own.
-    foreach(p -> append!(PATH_list, p), (hsakmt_roct_jll.PATH_list, NUMA_jll.PATH_list, Zlib_jll.PATH_list, Elfutils_jll.PATH_list,))
-    foreach(p -> append!(LIBPATH_list, p), (hsakmt_roct_jll.LIBPATH_list, NUMA_jll.LIBPATH_list, Zlib_jll.LIBPATH_list, Elfutils_jll.LIBPATH_list,))
-
-    global libhsa_runtime64_path = normpath(joinpath(artifact_dir, libhsa_runtime64_splitpath...))
-
-    # Manually `dlopen()` this right now so that future invocations
-    # of `ccall` with its `SONAME` will find this path immediately.
-    global libhsa_runtime64_handle = dlopen(libhsa_runtime64_path, RTLD_LAZY | RTLD_DEEPBIND)
-    push!(LIBPATH_list, dirname(libhsa_runtime64_path))
-
-    # Filter out duplicate and empty entries in our PATH and LIBPATH entries
-    filter!(!isempty, unique!(PATH_list))
-    filter!(!isempty, unique!(LIBPATH_list))
-    global PATH = join(PATH_list, ':')
-    global LIBPATH = join(vcat(LIBPATH_list, [joinpath(Sys.BINDIR, Base.LIBDIR, "julia"), joinpath(Sys.BINDIR, Base.LIBDIR)]), ':')
-
-    
+    JLLWrappers.@generate_init_footer()
 end  # __init__()
