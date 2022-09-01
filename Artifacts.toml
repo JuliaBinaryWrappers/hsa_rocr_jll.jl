@@ -1,40 +1,20 @@
 [[hsa_rocr]]
 arch = "x86_64"
-cxxstring_abi = "cxx03"
-git-tree-sha1 = "822f9bc6e92f48fd64dd5c4487e235884e99523f"
+cxxstring_abi = "cxx11"
+git-tree-sha1 = "169e9a933365dbab116a56e28d5e468c5c7a10c5"
 libc = "glibc"
 os = "linux"
 
     [[hsa_rocr.download]]
-    sha256 = "7da59f8f0ef1ea1232a2d2513908dfce355b0cc0d4ab1396fd78928ec7cf26e0"
-    url = "https://github.com/JuliaBinaryWrappers/hsa_rocr_jll.jl/releases/download/hsa_rocr-v4.5.2+0/hsa_rocr.v4.5.2.x86_64-linux-gnu-cxx03.tar.gz"
+    sha256 = "9fa6396fffc1060cec9ad2eebfa3f4023586b04318c97f0b4a949185e5acc3ea"
+    url = "https://github.com/JuliaBinaryWrappers/hsa_rocr_jll.jl/releases/download/hsa_rocr-v4.2.0+2/hsa_rocr.v4.2.0.x86_64-linux-gnu-cxx11.tar.gz"
 [[hsa_rocr]]
 arch = "x86_64"
 cxxstring_abi = "cxx11"
-git-tree-sha1 = "bc643f6a09b906b86889945251ce5003892d6a05"
-libc = "glibc"
-os = "linux"
-
-    [[hsa_rocr.download]]
-    sha256 = "25b976b10c2327ff8287f725477b1dd0acb88070b47286627b42a1f9854ede1d"
-    url = "https://github.com/JuliaBinaryWrappers/hsa_rocr_jll.jl/releases/download/hsa_rocr-v4.5.2+0/hsa_rocr.v4.5.2.x86_64-linux-gnu-cxx11.tar.gz"
-[[hsa_rocr]]
-arch = "x86_64"
-cxxstring_abi = "cxx03"
-git-tree-sha1 = "769d90369268643c9a3ba4594b98d88b93b623f2"
+git-tree-sha1 = "4ce9e463158b875144d3efeecf75ecb4bae9bddf"
 libc = "musl"
 os = "linux"
 
     [[hsa_rocr.download]]
-    sha256 = "17aaba9fe0e332562ed16bbb8dcb19cf1372481b8aebab0b0a5529d95c7915c2"
-    url = "https://github.com/JuliaBinaryWrappers/hsa_rocr_jll.jl/releases/download/hsa_rocr-v4.5.2+0/hsa_rocr.v4.5.2.x86_64-linux-musl-cxx03.tar.gz"
-[[hsa_rocr]]
-arch = "x86_64"
-cxxstring_abi = "cxx11"
-git-tree-sha1 = "404bbba8e90df84f1f0af7aef9637fac3deadd26"
-libc = "musl"
-os = "linux"
-
-    [[hsa_rocr.download]]
-    sha256 = "0cb47d423c62754d9cf918ef52ace148cbf73d737f48daf16dcfc2823c88c998"
-    url = "https://github.com/JuliaBinaryWrappers/hsa_rocr_jll.jl/releases/download/hsa_rocr-v4.5.2+0/hsa_rocr.v4.5.2.x86_64-linux-musl-cxx11.tar.gz"
+    sha256 = "0eca182ee7cba1820780cde61f29ca7b77add74c41b11511d12bfdb48742c401"
+    url = "https://github.com/JuliaBinaryWrappers/hsa_rocr_jll.jl/releases/download/hsa_rocr-v4.2.0+2/hsa_rocr.v4.2.0.x86_64-linux-musl-cxx11.tar.gz"
